@@ -16,7 +16,6 @@ def fetch_etf_holdings_with_weights(etf: str):
         req.headers.update(headers)
         r = req.get(url.format(etf))
         print(f"Extracting: {r.url}")
-        goal = re.findall(r'etf\\\/(.*?)\\/.*?\\/.*?', r.text)
         holdings = json.loads(r.text.split("etf_holdings.formatted_data")[1].split("</script>")[0].split(";")[0][3:])
         holdings[0]
         for holding in holdings:
